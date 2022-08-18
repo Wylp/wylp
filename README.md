@@ -13,16 +13,16 @@
 
 <div align="center" style="margin:20px; width: 500px">
     <div>
-        <a href="https://www.linkedin.com/in/alexsander-dev/">
+        <a href="https://www.linkedin.com/in/alexsander-dev/" target="_blank">
             <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/>
         </a>
-        <a href="https://wa.me/+5513988169397/?text=Ol%C3%A1+Alexsander%2C+eu+estou+vindo+por+meio+do+seu+perfil+do+github%2C+gostaria+de+conhece-lo+melhor">
+        <a href="https://wa.me/+5513988169397/?text=Ol%C3%A1+Alexsander%2C+eu+estou+vindo+por+meio+do+seu+perfil+do+github%2C+gostaria+de+conhece-lo+melhor" target="_blank">
             <img src="https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white"/>
         </a>
-        <a href="mailto:alexsandeveloper@gmail.com">
+        <a href="mailto:alexsandeveloper@gmail.com" target="_blank">
             <img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white"/>
         </a>
-        <a href="mailto:alexsander.dev@outlook.com">
+        <a href="mailto:alexsander.dev@outlook.com" target="_blank">
             <img src="https://img.shields.io/badge/Outlook-0078D4?style=for-the-badge&logo=microsoft-outlook&logoColor=white"/>
         </a>
     </div>
