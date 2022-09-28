@@ -40,32 +40,38 @@
     <div style="background-color:#b096f710; border-radius: 8px; margin: 10px;width: 350px">
         <h3 style="font-weight:bold; padding: 8px 0 6px;">Development Kit</h3>
         <div style="background-color:#b096f710; padding: 8px 0; border-radius: 8px; width: 350px;">
-            <img src="https://img.shields.io/badge/-Node.js-0D1117?style=for-the-badge&logo=node.js&labelColor=0D1117&textColor=0D1117">
+            <img src="https://img.shields.io/badge/-Node.js ✨-0D1117?style=for-the-badge&logo=node.js&labelColor=0D1117&textColor=0D1117">
             <img src="https://img.shields.io/badge/-NGINX-0D1117?style=for-the-badge&logo=nginx&labelColor=0D1117"/>
-            <img src="https://img.shields.io/badge/-Docker-0D1117?style=for-the-badge&logo=docker&labelColor=0D1117"/>
+            <img src="https://img.shields.io/badge/-Docker ✨-0D1117?style=for-the-badge&logo=docker&labelColor=0D1117"/>
             <img src="https://img.shields.io/badge/-kubernetes-0D1117?style=for-the-badge&logo=kubernetes&labelColor=0D1117"/>
+            <img src="https://img.shields.io/badge/-Express.js-0D1117?style=for-the-badge&logo=express&labelColor=0D1117&textColor=0D1117">
         </div>
     </div>
     <div style="background-color:#b096f710; border-radius: 8px; margin: 10px;width: 350px;">
         <h3 style="font-weight:bold; padding: 8px 0 6px;">Languages</h3>
         <div style="background-color:#b096f710; padding: 8px 0; border-radius: 8px; width: 350px;">
-            <img src="https://img.shields.io/badge/-JavaScript-0D1117?style=for-the-badge&logo=javascript&labelColor=0D1117&textColor=0D1117">
+            <img src="https://img.shields.io/badge/-JavaScript ✨-0D1117?style=for-the-badge&logo=javascript&labelColor=0D1117&textColor=0D1117">
             <img src="https://img.shields.io/badge/-TypeScript-0D1117?style=for-the-badge&logo=typescript&labelColor=0D1117">
-            <img src="https://img.shields.io/badge/-Express.js-0D1117?style=for-the-badge&logo=express&labelColor=0D1117&textColor=0D1117">
+            <img src="https://img.shields.io/badge/-Go-0D1117?style=for-the-badge&logo=go&labelColor=0D1117&textColor=0D1117">
+            <img src="https://img.shields.io/badge/-Python3-0D1117?style=for-the-badge&logo=python&labelColor=0D1117&textColor=0D1117">
+            <img src="https://img.shields.io/badge/-Java-0D1117?style=for-the-badge&logo=java&labelColor=0D1117&textColor=0D1117">
+            <img src="https://img.shields.io/badge/-C-0D1117?style=for-the-badge&logo=c&labelColor=0D1117&textColor=0D1117">
+            <img src="https://img.shields.io/badge/-C%23-0D1117?style=for-the-badge&logo=c-sharp&labelColor=0D1117&textColor=0D1117">
+            <img src="https://img.shields.io/badge/-C%2B%2B-0D1117?style=for-the-badge&logo=c%2B%2B&labelColor=0D1117&textColor=0D1117">
         </div>
     </div>
     <div style="background-color:#b096f710; border-radius: 8px; margin: 10px;width: 350px; height: fit-content;">
         <h3 style="font-weight:bold; padding: 8px 0 6px;">Cloud Service</h3>
         <div style="background-color:#b096f710; padding: 8px 0; border-radius: 8px; width: 350px;">
-            <img src="https://img.shields.io/badge/-Google Cloud-0D1117?style=for-the-badge&logo=google-cloud&labelColor=0D1117&textColor=0D1117">
-            <img src="https://img.shields.io/badge/-Amazon AWS-0D1117?style=for-the-badge&logo=amazon-aws&labelColor=0D1117&textColor=0D1117">
-            <img src="https://img.shields.io/badge/-Redis-0D1117?style=for-the-badge&logo=redis&labelColor=0D1117&textColor=0D1117">
+            <img src="https://img.shields.io/badge/-Google Cloud ✨-0D1117?style=for-the-badge&logo=google-cloud&labelColor=0D1117&textColor=0D1117">
+            <img src="https://img.shields.io/badge/-Amazon AWS ✨-0D1117?style=for-the-badge&logo=amazon-aws&labelColor=0D1117&textColor=0D1117">
+            <img src="https://img.shields.io/badge/-Redis ✨-0D1117?style=for-the-badge&logo=redis&labelColor=0D1117&textColor=0D1117">
         </div>
     </div>
     <div style="background-color:#b096f710; border-radius: 8px; margin: 10px;width: 350px;">
         <h3 style="font-weight:bold; padding: 8px 0 6px;">Front End Kit</h3>
         <div style="background-color:#b096f710; padding: 8px 0; border-radius: 8px; width: 350px;">
-            <img src="https://img.shields.io/badge/-React.js-0D1117?style=for-the-badge&logo=react&labelColor=0D1117">
+            <img src="https://img.shields.io/badge/-React.js ✨-0D1117?style=for-the-badge&logo=react&labelColor=0D1117">
             <img src="https://img.shields.io/badge/-Redux-0D1117?style=for-the-badge&logo=redux&labelColor=0D1117">
             <img src="https://img.shields.io/badge/-React Router-0D1117?style=for-the-badge&logo=react-router&labelColor=0D1117">
             <img src="https://img.shields.io/badge/-CSS3-0D1117?style=for-the-badge&logo=CSS3&logoColor=1572B6&labelColor=0D1117">
@@ -77,17 +83,18 @@
         <h3 style="font-weight:bold; padding: 8px 0 6px;">Main Databases</h3>
         <div style="background-color:#b096f710; padding: 8px 0; border-radius: 8px; width: 350px;">
             <img src="https://img.shields.io/badge/-Postgresql-0D1117?style=for-the-badge&logo=postgresql&labelColor=0D1117">
-            <img src="https://img.shields.io/badge/-MySQL-0D1117?style=for-the-badge&logo=mysql&labelColor=0D1117">
+            <img src="https://img.shields.io/badge/-MySQL ✨-0D1117?style=for-the-badge&logo=mysql&labelColor=0D1117">
         </div>
     </div>
     <div style="background-color:#b096f710; border-radius: 8px; margin: 10px;width: 350px;">
         <h3 style="font-weight:bold; padding: 8px 0 6px;">Development Tools</h3>
         <div style="background-color:#b096f710; padding: 8px 0; border-radius: 8px; width: 350px;">
-            <img src="https://img.shields.io/badge/-Visual%20Studio%20Code-0D1117?style=for-the-badge&logo=visual-studio-code&logoColor=007ACC&labelColor=0D1117"/>
+            <img src="https://img.shields.io/badge/-Visual%20Studio%20Code ✨-0D1117?style=for-the-badge&logo=visual-studio-code&logoColor=007ACC&labelColor=0D1117"/>
             <img src="https://img.shields.io/badge/-Dbeaver-0D1117?style=for-the-badge&logo=dbeaver&labelColor=0D1117&textColor=0D1117">
             <img src="https://img.shields.io/badge/-Git-0D1117?style=for-the-badge&logo=git&labelColor=0D1117">
-            <img src="https://img.shields.io/badge/-GitHub-0D1117?style=for-the-badge&logo=github&labelColor=0D1117">
+            <img src="https://img.shields.io/badge/-GitHub ✨-0D1117?style=for-the-badge&logo=github&labelColor=0D1117">
             <img src="https://img.shields.io/badge/-Linux-0D1117?style=for-the-badge&logo=linux&labelColor=0D1117">
+            <img src="https://img.shields.io/badge/Arch_Linux ✨-0D1117?style=for-the-badge&logo=arch-linux&labelColor=0D1117">
         </div>
     </div>
 </div>
