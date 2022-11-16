@@ -1,4 +1,4 @@
-[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=25&duration=1500&pause=200&color=AD62F7&center=true&vCenter=true&multiline=true&width=1000&height=250&lines=Welcome+%F0%9F%A4%A9;Hello%2C+My+name+is+Alexsander+de+Oliveira;21+years+old+%F0%9F%8E%89;I'm+from+Santos+-+SP%2C+Brasil+%F0%9F%8C%87;+;%22Take+a+coffee+break%2C+but;don't+break+the+code.%22+%E2%98%95;+;+;+;+;+;)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=25&duration=1500&pause=200&color=AD62F7&center=true&vCenter=true&multiline=true&width=1000&height=250&lines=Welcome+%F0%9F%A4%A9;Hello%2C+My+name+is+Alexsander+de+Oliveira;21+year+old+%F0%9F%8E%89;I'm+from+Santos+-+SP%2C+Brasil+%F0%9F%8C%87;+;%22Take+a+coffee+break%2C+but;don't+break+the+code.%22+%E2%98%95;+;+;+;+;+;)](https://git.io/typing-svg)
 
 [![Ashutosh's github activity graph](https://activity-graph.herokuapp.com/graph?username=wylp&bg_color=0d111700&color=ad62f7&line=ad62f7&point=b096f7&area=true&hide_border=true)](https://github.com/ashutosh00710/github-readme-activity-graph)
 
