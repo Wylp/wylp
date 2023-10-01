@@ -5,7 +5,7 @@
 <div align="center">
     <a href="#">
         <img lign="left" src="https://github-readme-streak-stats.herokuapp.com/?user=wylp&hide_border=true&background=20232A00&ring=713FF7&fire=B096F7&sideLabels=9F7FF7&dates=c2aef7&sideNums=B096F7&currStreakNum=B096F7&currStreakLabel=B096F7" width="48%" >
-        <img lign="right" src="https://github-readme-stats.vercel.app/api?username=wylp&show_icons=true&hide_border=true&theme=react&title_color=ad62f7&text_color=b096f7&icon_color=ad62f7&bg_color=20232A00&count_private=true" width="48%">
+<!--         <img lign="right" src="https://github-readme-stats.vercel.app/api?username=wylp&show_icons=true&hide_border=true&theme=react&title_color=ad62f7&text_color=b096f7&icon_color=ad62f7&bg_color=20232A00&count_private=true" width="48%"> -->
     </a>
 </div>
 <div align="center">
