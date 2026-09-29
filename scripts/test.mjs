@@ -47,7 +47,7 @@ const data = {
   repos: [{ name: "public-app", nameWithOwner: "me/public-app", stargazerCount: 3, pushedAt: "2026-09-20T00:00:00Z", languages: { edges: [{ size: 900, node: { name: "TypeScript" } }, { size: 100, node: { name: "Rust" } }] } }],
   publicRepos: 1, calendar: { totalContributions: 700, weeks },
   years: [[2025, 300], [2026, 400]], allDays: weeks.flatMap(w => w.contributionDays),
-  samples, counts: { commitsAll: 10, prsMergedAll: 5, prs12: 4, merged12: 3, reviews12: 2 },
+  private12: 600, samples, counts: { prs12: 4, reviews12: 2 },
   featured: PROJECTS.map(p => ({ ...p, nameWithOwner: p.repo, description: null, stargazerCount: 1, forkCount: 0, pushedAt: "2026-09-01T00:00:00Z", primaryLanguage: { name: "Swift" }, myPrsMerged: 1, myCommits: 2 })),
 };
 const files = renderAll(data);

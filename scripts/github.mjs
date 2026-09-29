@@ -1,5 +1,7 @@
-// Fetches everything the dashboard shows. Activity numbers come from the Search API because
-// contributionsCollection only itemizes public work (private PRs/commits collapse into one total).
+// Fetches everything the dashboard shows. Totals come from the contribution calendar, which GitHub
+// publishes with private work included as one anonymous aggregate. Details (PRs, commit times, repos)
+// come from the Search API and only cover what the token owner can see: public + personal repos.
+// Nothing here reads repositories of organizations the token isn't scoped to.
 const API = "https://api.github.com";
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const iso = d => d.toISOString().slice(0, 10);
@@ -59,7 +61,7 @@ export async function collect(gh, login, projects, now = new Date()) {
     name login location createdAt
     repositories(ownerAffiliations:OWNER, privacy:PUBLIC, isFork:false, first:100, orderBy:{field:PUSHED_AT, direction:DESC}){
       totalCount nodes{ name nameWithOwner stargazerCount pushedAt languages(first:10){ edges{ size node{ name } } } } }
-    contributionsCollection{ ${CAL} } } }`, { login });
+    contributionsCollection{ restrictedContributionsCount ${CAL} } } }`, { login });
   const u = base.user;
 
   // One aliased query for every calendar year since the account exists (each range must be <= 1 year).
@@ -78,10 +80,7 @@ export async function collect(gh, login, projects, now = new Date()) {
   }
 
   const counts = {
-    commitsAll: await count(gh, "commits", `author:${login}`),
-    prsMergedAll: await count(gh, "issues", `author:${login} type:pr is:merged`),
     prs12: await count(gh, "issues", `author:${login} type:pr created:${since12}`),
-    merged12: await count(gh, "issues", `author:${login} type:pr is:merged created:${since12}`),
     reviews12: await count(gh, "issues", `reviewed-by:${login} -author:${login} type:pr created:${since12}`),
   };
 
@@ -104,6 +103,7 @@ export async function collect(gh, login, projects, now = new Date()) {
     repos: u.repositories.nodes.filter(r => r.nameWithOwner.toLowerCase() !== `${login}/${login}`.toLowerCase()),
     publicRepos: u.repositories.totalCount,
     calendar: u.contributionsCollection.contributionCalendar,
+    private12: u.contributionsCollection.restrictedContributionsCount,
     years: years.map(y => [y, yd[`y${y}`].contributionCalendar.totalContributions]),
     allDays: years.flatMap(y => yd[`y${y}`].contributionCalendar.weeks.flatMap(w => w.contributionDays)),
     samples, counts, featured,

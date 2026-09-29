@@ -98,7 +98,8 @@ export function header(d, s, profile) {
 <text class="m" x="${(bx + bar / 2).toFixed(1)}" y="178" text-anchor="middle" fill="${O.dim}" font-size="8.5">'${String(yr).slice(2)}</text>`;
   }).join("");
 
-  const kp = [[fmt(s.allTime), "ALL-TIME CONTRIB"], [fmt(d.counts.commitsAll), "COMMITS AUTHORED"], [fmt(d.counts.prsMergedAll), "PRS MERGED"], [fmt(s.total), "LAST 12 MONTHS"], [s.longest + "d", "BEST STREAK"], [Math.round(s.active / s.days.length * 100) + "%", "ACTIVE DAYS / YR"]];
+  // Only calendar aggregates here: they are complete, private work included.
+  const kp = [[fmt(s.allTime), "ALL-TIME CONTRIB"], [fmt(s.total), "LAST 12 MONTHS"], [fmt(d.private12), "PRIVATE · 12 MO"], [s.longest + "d", "BEST STREAK"], [Math.round(s.active / s.days.length * 100) + "%", "ACTIVE DAYS / YR"], [fmt(d.publicRepos), "PUBLIC REPOS"]];
   const kpis = kp.map(([v, l], i) => `<g class="fade" style="animation-delay:${.5 + i * .07}s"><rect x="${28 + i * 131}" y="208" width="2" height="42" fill="${O.acc}"/><text x="${42 + i * 131}" y="231" fill="${O.fg}" font-size="22" font-weight="700">${esc(v)}</text><text class="m" x="${42 + i * 131}" y="246" fill="${O.dim}" font-size="8.5" letter-spacing="1">${l}</text></g>`).join("");
 
   const pillW = 44 + measure(profile.role, { weight: 700, size: 9.5, ls: 1.6 }) + 14;
@@ -138,7 +139,7 @@ const TERM_CSS = `.t text{font-family:${MONO};font-size:12.5px;white-space:pre}
 export function terminal(d, s) {
   const C = T, h = 470;
   const logo = ["██╗    ██╗", "██║    ██║", "██║ █╗ ██║", "██║███╗██║", "╚███╔███╔╝", " ╚══╝╚══╝ "];
-  const info = [["user", d.login.toLowerCase()], ["name", d.name ?? d.login], ["host", d.location ?? "—"], ["uptime", `${s.age} on GitHub`], ["repos", `${d.publicRepos} public · ${s.stars} ★`], ["contrib", `${fmt(s.total)} in 12 months`], ["prs", `${fmt(d.counts.prs12)} opened · ${fmt(d.counts.reviews12)} reviewed`], ["streak", `${s.current}d now · ${s.longest}d best`]];
+  const info = [["user", d.login.toLowerCase()], ["name", d.name ?? d.login], ["host", d.location ?? "—"], ["uptime", `${s.age} on GitHub`], ["repos", `${d.publicRepos} public · ${s.stars} ★`], ["contrib", `${fmt(s.total)} in 12 months`], ["private", `${fmt(d.private12)} contributions`], ["prs", `${fmt(d.counts.prs12)} opened · ${fmt(d.counts.reviews12)} reviewed`], ["streak", `${s.current}d now · ${s.longest}d best`]];
   const top5 = s.langs.slice(0, 5), other = Math.max(0, 100 - top5.reduce((a, l) => a + l[1], 0));
   const meters = [...top5, ["Other", other]];
   const infoTxt = info.map(([key, v], i) => `<text class="ln" x="150" y="${96 + i * 20}" style="animation-delay:${1.2 + i * .08}s"><tspan fill="${C.acc}">${key.padEnd(8, " ")}</tspan><tspan fill="${C.fg}">${esc(pad(v, 34))}</tspan></text>`).join("");
@@ -169,7 +170,7 @@ ${logo.map((l, i) => `<text class="ln" x="28" y="${100 + i * 17}" fill="${C.acc}
 ${infoTxt}
 <text class="ln" x="480" y="96" fill="${C.dim}" style="animation-delay:1.4s">languages ─ public repos, by bytes</text>
 ${meterTxt}
-<text class="ln" x="28" y="272" style="animation-delay:2s"><tspan fill="${C.acc}">❯ </tspan><tspan fill="${C.fg}">top -o commits --since=12mo</tspan></text>
+<text class="ln" x="28" y="272" style="animation-delay:2s"><tspan fill="${C.acc}">❯ </tspan><tspan fill="${C.fg}">top -o commits --since=12mo --scope=public,personal</tspan></text>
 <rect x="28" y="283" width="784" height="18" fill="${C.acc}" opacity=".14"/>
 <text class="ln" x="28" y="296" style="animation-delay:2.2s" fill="${C.acc2}">  PID  ${"REPO".padEnd(30, " ")}VISIBILITY COMMITS  SHARE</text>
 ${rows}
@@ -214,7 +215,7 @@ ${lbl(28, 24, "// OBSERVABILITY · LAST 12 MONTHS")}${lbl(812, 24, "SRC: GITHUB 
 ${panel(28, 36, 386, 204, "THROUGHPUT · CONTRIB/WEEK", `AVG ${Math.round(avg)}/WK · PEAK ${max}`)}
 ${p1}
 <line x1="42" x2="400" y1="${avgY.toFixed(1)}" y2="${avgY.toFixed(1)}" stroke="${O.fg}" stroke-opacity=".35" stroke-dasharray="3 3"/>
-${panel(426, 36, 386, 204, "COMMIT CLOCK · LOCAL TIME", `${fmt(s.commits12)} COMMITS`)}
+${panel(426, 36, 386, 204, "COMMIT CLOCK · LOCAL TIME", `${fmt(s.commits12)} PUBLIC+PERSONAL`)}
 <circle cx="${cx}" cy="${cy}" r="${r0 - 6}" fill="none" stroke="${O.faint}"/>
 <circle cx="${cx}" cy="${cy}" r="70" fill="none" stroke="${O.faint}" stroke-dasharray="2 4"/>
 ${spokes}${hl}
