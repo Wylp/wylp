@@ -215,7 +215,7 @@ ${lbl(28, 24, "// OBSERVABILITY · LAST 12 MONTHS")}${lbl(812, 24, "SRC: GITHUB 
 ${panel(28, 36, 386, 204, "THROUGHPUT · CONTRIB/WEEK", `AVG ${Math.round(avg)}/WK · PEAK ${max}`)}
 ${p1}
 <line x1="42" x2="400" y1="${avgY.toFixed(1)}" y2="${avgY.toFixed(1)}" stroke="${O.fg}" stroke-opacity=".35" stroke-dasharray="3 3"/>
-${panel(426, 36, 386, 204, "COMMIT CLOCK · LOCAL TIME", `${fmt(s.commits12)} PUBLIC+PERSONAL`)}
+${panel(426, 36, 386, 204, "COMMIT CLOCK · PUBLIC + PERSONAL", `${fmt(s.commits12)} COMMITS`)}
 <circle cx="${cx}" cy="${cy}" r="${r0 - 6}" fill="none" stroke="${O.faint}"/>
 <circle cx="${cx}" cy="${cy}" r="70" fill="none" stroke="${O.faint}" stroke-dasharray="2 4"/>
 ${spokes}${hl}
@@ -224,7 +224,7 @@ ${spokes}${hl}
 <text x="660" y="162" fill="${O.fg}" font-size="18" font-weight="700">${sum(10, 18).toFixed(0)}%</text>
 <text class="m" x="660" y="176" fill="${O.dim}" font-size="8.5" letter-spacing="1">BETWEEN 10H–18H</text>
 <text x="660" y="206" fill="${O.fg}" font-size="18" font-weight="700">${sum(0, 6).toFixed(1)}%</text>
-<text class="m" x="660" y="220" fill="${O.dim}" font-size="8.5" letter-spacing="1">00H–06H · ON-CALL</text>
+<text class="m" x="660" y="220" fill="${O.dim}" font-size="8.5" letter-spacing="1">00H–06H · NIGHT OWL</text>
 ${panel(28, 252, 386, 196, "LOAD BY WEEKDAY", `WEEKEND ${wkend.toFixed(1)}%`)}
 ${p3}
 ${panel(426, 252, 386, 196, "MONTHLY TREND", trend)}
