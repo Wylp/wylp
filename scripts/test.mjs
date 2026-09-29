@@ -1,6 +1,6 @@
 // node scripts/test.mjs — offline checks with a synthetic dataset (no network, no token).
 import assert from "node:assert/strict";
-import { streaks, levels, topRepos, privateNames } from "./github.mjs";
+import { streaks, levels, topRepos, privateNames, parseCalendar } from "./github.mjs";
 import { esc, measure } from "./render.mjs";
 import { guard, renderAll } from "./build.mjs";
 import { PROJECTS } from "./config.mjs";
@@ -11,6 +11,14 @@ const day = (date, c) => ({ date, contributionCount: c });
 assert.deepEqual(streaks([day("2026-01-01", 1), day("2026-01-02", 0), day("2026-01-03", 2), day("2026-01-04", 3), day("2026-01-05", 0)], "2026-01-05"), { current: 2, longest: 2 });
 assert.deepEqual(streaks([day("2026-01-01", 1), day("2026-01-02", 1), day("2026-01-03", 1)], "2026-01-03"), { current: 3, longest: 3 });
 assert.equal(streaks([day("2026-01-01", 1), day("2026-01-02", 0), day("2026-01-03", 0)], "2026-01-03").current, 0);
+
+// Public calendar parser: dates from cells, counts from tooltips, weeks start on Sunday.
+const cell = (id, date) => `<td tabindex="0" style="width: 10px" data-date="${date}" id="${id}" data-level="1" class="ContributionCalendar-day"></td>`;
+const tip = (id, text) => `<tool-tip id="t-${id}" for="${id}" popover="manual" class="sr-only">${text}</tool-tip>`;
+const cal = parseCalendar([cell("c-0-0", "2026-01-03"), cell("c-1-0", "2026-01-04"), cell("c-2-0", "2026-01-05"), tip("c-0-0", "No contributions on January 3rd."), tip("c-1-0", "1 contribution on January 4th."), tip("c-2-0", "1,204 contributions on January 5th.")].join(""));
+assert.equal(cal.totalContributions, 1205);
+assert.deepEqual(cal.weeks.map(w => w.contributionDays.length), [1, 2]);
+assert.throws(() => parseCalendar("<html>changed layout</html>"), /public contribution calendar/);
 
 // Heat levels: 0 stays empty, the max lands on the top bucket.
 const lvl = levels([0, 1, 2, 3, 4, 10]);

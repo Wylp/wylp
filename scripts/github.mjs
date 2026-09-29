@@ -1,6 +1,7 @@
-// Fetches everything the dashboard shows. Totals come from the contribution calendar, which GitHub
-// publishes with private work included as one anonymous aggregate. Details (PRs, commit times, repos)
-// come from the Search API and only cover what the token owner can see: public + personal repos.
+// Fetches everything the dashboard shows. Totals come from the public profile calendar: the page any
+// visitor sees, where GitHub already includes private work as plain daily counts. (A fine-grained token
+// sees less than an anonymous visitor there, so the calendar is read without it.) Details (PRs, commit
+// times, repos) come from the Search API and only cover what the token can see: public + personal repos.
 // Nothing here reads repositories of organizations the token isn't scoped to.
 const API = "https://api.github.com";
 const sleep = ms => new Promise(r => setTimeout(r, ms));
@@ -54,21 +55,52 @@ async function commitsBetween(gh, login, from, to) {
   return items.map(i => ({ date: i.commit.author.date, repo: i.repository.full_name, private: i.repository.private }));
 }
 
-const CAL = "contributionCalendar{ totalContributions weeks{ contributionDays{ date contributionCount } } }";
+// Parses github.com/users/<login>/contributions. Cells carry the date, tooltips carry the count.
+export function parseCalendar(html) {
+  const dates = new Map();
+  for (const [tag] of html.matchAll(/<td\b[^>]*data-date="[^"]+"[^>]*>/g)) {
+    const date = tag.match(/data-date="(\d{4}-\d{2}-\d{2})"/)?.[1], id = tag.match(/\bid="([^"]+)"/)?.[1];
+    if (date && id) dates.set(id, date);
+  }
+  const days = [];
+  for (const m of html.matchAll(/<tool-tip\b[^>]*\bfor="([^"]+)"[^>]*>\s*(No|[\d,]+) contributions?\b/g)) {
+    const date = dates.get(m[1]);
+    if (date) days.push({ date, contributionCount: m[2] === "No" ? 0 : Number(m[2].replace(/,/g, "")) });
+  }
+  if (!days.length || days.length !== dates.size) throw new Error("Could not read the public contribution calendar");
+  days.sort((a, b) => a.date.localeCompare(b.date));
+  const weeks = [];
+  for (const d of days) {
+    if (!weeks.length || new Date(d.date + "T00:00:00Z").getUTCDay() === 0) weeks.push({ contributionDays: [] });
+    weeks.at(-1).contributionDays.push(d);
+  }
+  return { totalContributions: days.reduce((a, d) => a + d.contributionCount, 0), weeks };
+}
+
+// Anonymous on purpose: this request never carries the token.
+async function publicCalendar(login, year) {
+  const range = year ? `?from=${year}-01-01&to=${year}-12-31` : "";
+  const res = await fetch(`https://github.com/users/${login}/contributions${range}`, { headers: { "x-requested-with": "XMLHttpRequest", "user-agent": "wylp-profile-dashboard" } });
+  if (!res.ok) throw new Error(`Public calendar ${res.status} for ${year ?? "last year"}`);
+  return parseCalendar(await res.text());
+}
 
 export async function collect(gh, login, projects, now = new Date()) {
   const base = await gh.gql(`query($login:String!){ user(login:$login){
     name login location createdAt
     repositories(ownerAffiliations:OWNER, privacy:PUBLIC, isFork:false, first:100, orderBy:{field:PUSHED_AT, direction:DESC}){
       totalCount nodes{ name nameWithOwner stargazerCount pushedAt languages(first:10){ edges{ size node{ name } } } } }
-    contributionsCollection{ restrictedContributionsCount ${CAL} } } }`, { login });
+    contributionsCollection{ restrictedContributionsCount contributionCalendar{ totalContributions } } } }`, { login });
   const u = base.user;
 
-  // One aliased query for every calendar year since the account exists (each range must be <= 1 year).
   const firstYear = new Date(u.createdAt).getUTCFullYear(), thisYear = now.getUTCFullYear();
   const years = Array.from({ length: thisYear - firstYear + 1 }, (_, i) => firstYear + i);
-  const yq = years.map(y => `y${y}: contributionsCollection(from:"${y}-01-01T00:00:00Z", to:"${y}-12-31T23:59:59Z"){ ${CAL} }`).join("\n");
-  const yd = (await gh.gql(`query($login:String!){ user(login:$login){ ${yq} } }`, { login })).user;
+  const calendar = await publicCalendar(login);
+  const yearCals = [];
+  for (const y of years) yearCals.push(await publicCalendar(login, y));
+  // What the token sees itemized (public + personal); everything else on the public calendar is private work.
+  const tc = u.contributionsCollection;
+  const itemized = tc.contributionCalendar.totalContributions - tc.restrictedContributionsCount;
 
   const since = new Date(now.getTime() - 365 * DAY);
   const since12 = `>=${iso(since)}`;
@@ -102,10 +134,10 @@ export async function collect(gh, login, projects, now = new Date()) {
     login: u.login, name: u.name, location: u.location, createdAt: u.createdAt, now: now.toISOString(),
     repos: u.repositories.nodes.filter(r => r.nameWithOwner.toLowerCase() !== `${login}/${login}`.toLowerCase()),
     publicRepos: u.repositories.totalCount,
-    calendar: u.contributionsCollection.contributionCalendar,
-    private12: u.contributionsCollection.restrictedContributionsCount,
-    years: years.map(y => [y, yd[`y${y}`].contributionCalendar.totalContributions]),
-    allDays: years.flatMap(y => yd[`y${y}`].contributionCalendar.weeks.flatMap(w => w.contributionDays)),
+    calendar,
+    private12: Math.max(0, calendar.totalContributions - itemized),
+    years: years.map((y, i) => [y, yearCals[i].totalContributions]),
+    allDays: yearCals.flatMap(c => c.weeks.flatMap(w => w.contributionDays)),
     samples, counts, featured,
   };
 }
