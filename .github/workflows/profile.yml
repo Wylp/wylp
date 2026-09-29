@@ -1,0 +1,40 @@
+name: Profile dashboard
+
+on:
+  schedule:
+    - cron: "17 6 * * *" # daily, 03:17 in São Paulo
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["scripts/**", "assets/fonts/**", ".github/workflows/profile.yml"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: profile-dashboard
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Offline checks
+        run: node scripts/test.mjs
+
+      - name: Render SVGs
+        run: node scripts/build.mjs
+        env:
+          GH_TOKEN: ${{ secrets.PROFILE_TOKEN }}
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/*.svg
+          git diff --cached --quiet && exit 0
+          git commit -m "chore: refresh profile dashboard"
+          git push
