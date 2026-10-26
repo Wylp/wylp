@@ -28,8 +28,8 @@ text{font-family:'Space Grotesk',-apple-system,'Segoe UI',Helvetica,Arial,sans-s
 <rect width="840" height="300" fill="#181411"/><rect width="840" height="300" fill="url(#grid)"/><rect width="840" height="300" fill="url(#glow)"/>
 
 <rect width="840" height="28" fill="#120f0d"/><rect y="28" width="840" height="1" fill="#f27f0d" opacity=".12"/>
-<circle class="pulse" cx="24" cy="14" r="2.6" fill="#22c55e"/><text class="m" x="32" y="17.5" fill="rgba(255,255,255,.45)" font-size="9" letter-spacing="1.5">GITHUB_API: SYNCED</text><circle class="" cx="178.20000000000005" cy="14" r="2.6" fill="#22c55e"/><text class="m" x="186.20000000000005" y="17.5" fill="rgba(255,255,255,.45)" font-size="9" letter-spacing="1.5">STREAK: ACTIVE</text><circle class="" cx="304.80000000000007" cy="14" r="2.6" fill="#22c55e"/><text class="m" x="312.80000000000007" y="17.5" fill="rgba(255,255,255,.45)" font-size="9" letter-spacing="1.5">BUILD: PASSING</text>
-<text class="m" x="816" y="17.5" text-anchor="end" fill="rgba(255,255,255,.45)" font-size="9" letter-spacing="1.5">SYNC: 2026-10-25  ·  UPTIME: 7Y 0M</text>
+<circle class="pulse" cx="24" cy="14" r="2.6" fill="#22c55e"/><text class="m" x="32" y="17.5" fill="rgba(255,255,255,.45)" font-size="9" letter-spacing="1.5">GITHUB_API: SYNCED</text><circle class="" cx="178.20000000000005" cy="14" r="2.6" fill="#6b6158"/><text class="m" x="186.20000000000005" y="17.5" fill="rgba(255,255,255,.45)" font-size="9" letter-spacing="1.5">STREAK: IDLE</text><circle class="" cx="291.00000000000006" cy="14" r="2.6" fill="#22c55e"/><text class="m" x="299.00000000000006" y="17.5" fill="rgba(255,255,255,.45)" font-size="9" letter-spacing="1.5">BUILD: PASSING</text>
+<text class="m" x="816" y="17.5" text-anchor="end" fill="rgba(255,255,255,.45)" font-size="9" letter-spacing="1.5">SYNC: 2026-10-26  ·  UPTIME: 7Y 0M  ·  REGION: SANTOS-SP</text>
 <g class="fade">
 <rect x="28.5" y="50.5" width="254.1" height="22" rx="11" fill="#f27f0d" fill-opacity=".1" stroke="#f27f0d" stroke-opacity=".25"/>
 <circle class="ping" cx="44" cy="61.5" r="3" fill="#f27f0d" opacity=".7"/><circle cx="44" cy="61.5" r="3" fill="#f27f0d"/>
